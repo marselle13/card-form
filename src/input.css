@@ -30,3 +30,19 @@ body {
   margin-left: auto;
   padding: 37px;
 }
+
+@media only screen and (min-width: 1440px) {
+  .card-front {
+    width: 447px;
+    left: 100px;
+    height: 245px;
+    padding: 28px 32px;
+  }
+  .card-back {
+    width: 447px;
+    padding: 57px;
+    height: 245px;
+    top: 469px;
+    left: 258px;
+  }
+}

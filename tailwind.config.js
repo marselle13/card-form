@@ -13,6 +13,9 @@ module.exports = {
       backgroundImage: {
         "main-mob": "url('../images/bg-main-mobile.png')",
       },
+      screens: {
+        "3xl": "1440px",
+      },
     },
   },
   plugins: [],
