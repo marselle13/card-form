@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
 @font-face {
   font-family: "card";
   src: url("../fonts/SpaceGrotesk-Medium.ttf") format("truetype");
@@ -16,6 +24,7 @@ body {
   position: relative;
   bottom: 68px;
   width: 285px;
+  height: 156px;
   border-radius: 6px;
   padding: 19px;
 }
