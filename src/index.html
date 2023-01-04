@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../dist/output.css" rel="stylesheet" />
+    <title>Interactive Card Form</title>
   </head>
   <body>
     <div class="3xl:flex 3xl:h-full 3xl:gap-[350px] 3xl:w-full">
@@ -27,11 +28,11 @@
           <div
             class="mt-[37px] space-y-[17px] 3xl:mt-[64px] 3xl:space-y-[25px]"
           >
-            <h3
+            <h1
               class="card_number text-lg tracking-[2.2px] text-white 3xl:text-[28px] 3xl:leading-[35px] 3xl:tracking-[3.4px]"
             >
               0000 0000 0000 0000
-            </h3>
+            </h1>
             <div class="flex justify-between">
               <h4
                 class="cardholder_name text-[9px] text-white uppercase tracking-[1.29px] 3xl:text-sm 3xl:tracking-[2px]"
@@ -48,12 +49,11 @@
         </div>
       </section>
       <section class="px-4 mt-[91px] 3xl:max-w-[381px] 3xl:mt-[275px] 3xl:px-0">
-        <form action="" class="space-y-[20px]">
+        <form class="space-y-[20px]">
           <div>
             <label
               for="cardholder_name"
               class="block uppercase text-xs text-dark-violet tracking-[2px] mb-2"
-              maxLength="16"
               >Cardholder Name</label
             >
             <input
@@ -92,7 +92,6 @@
                 id="month"
                 class="border border-light-grayish text-[18px] leading-[22px] rounded-[8px] w-full py-[11px] px-[16px] focus:outline-gradient-1 text-dark-violet"
                 placeholder="MM"
-                maxlength="2"
               />
               <span class="error text-sm text-red-500 whitespace-nowrap"></span>
             </div>
@@ -122,7 +121,6 @@
                 id="cvc"
                 class="border border-light-grayish text-[18px] leading-[22px] rounded-[8px] w-full py-[11px] px-[16px] focus:outline-gradient-1 text-dark-violet"
                 placeholder="e.g. 123"
-                maxlength="3"
               />
               <span class="error text-sm text-red-500"></span>
             </div>
