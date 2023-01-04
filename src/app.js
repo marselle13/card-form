@@ -2,6 +2,8 @@
 
 const inputs = document.querySelectorAll("input");
 const form = document.querySelector("form");
+const done = document.querySelector(".done");
+const cont = document.querySelector(".continue");
 //text content
 const cardHolder = document.querySelector(".cardholder_name");
 const cardNumber = document.querySelector(".card_number");
@@ -30,6 +32,7 @@ class App {
     inputYear.addEventListener("input", this._inputDate);
     //submit Form
     form.addEventListener("submit", this._cardSubmit.bind(this));
+    cont.addEventListener("click", this._continue);
   }
   //input card checker method
   _inputCard() {
@@ -68,32 +71,55 @@ class App {
     checkValue("000", cardCVC, inputCVC);
     checkDate();
   }
-
   _cardSubmit(e) {
     e.preventDefault();
     // validation
+    this._validations();
+    if (
+      this._nameCheck() &&
+      this._nameCheck() &&
+      this._numberCheck() &&
+      this._cvcCheck() &&
+      this._yearCheck() &&
+      this._monthCheck()
+    ) {
+      form.classList.add("hidden");
+      done.classList.remove("hidden");
+    }
+  }
+  //validation
+  _validations() {
     this._blankCheck();
     this._numberCheck();
-    this._dayCheck();
+    this._monthCheck();
     this._yearCheck();
     this._cvcCheck();
   }
 
   _blankCheck() {
+    let blank = false;
     inputs.forEach(function (input, index) {
       let errorSpan = error[index];
+
       if (input.value === "") {
         input.classList.add("border-red-500");
         input.classList.remove("border-gray-300");
         errorSpan.textContent = "can't be blank";
-        return false;
       } else {
         input.classList.remove("border-red-500");
         input.classList.add("border-gray-300");
         errorSpan.textContent = "";
-        return true;
       }
     });
+    return blank;
+  }
+
+  _nameCheck() {
+    if (inputs[0].value === "") {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   _numberCheck() {
@@ -106,11 +132,12 @@ class App {
       inputNumber.classList.add("border-red-500");
       inputNumber.classList.remove("border-gray-300");
       return false;
+    } else if (numberValue.length === 16 && inputs[1].value) {
+      return true;
     }
-    return true;
   }
 
-  _dayCheck() {
+  _monthCheck() {
     const errorDate = error[2];
     const monthValue = inputs[2].value;
     const inputMonth = inputs[2];
@@ -119,10 +146,12 @@ class App {
       errorDate.textContent = "";
       inputMonth.classList.remove("border-red-500");
       inputMonth.classList.add("border-gray-300");
+      return true;
     } else {
       errorDate.textContent = "wrong Date";
       inputMonth.classList.add("border-red-500");
       inputMonth.classList.remove("border-gray-300");
+      return false;
     }
   }
 
@@ -153,13 +182,20 @@ class App {
       inputCVC.classList.add("border-red-500");
       inputCVC.classList.remove("border-gray-300");
       return false;
-    }
-    return true;
+    } else if (CVCValue.length === 3 && CVCValue) return true;
   }
-
-  _hideForm() {
-    form.classList.add("hidden");
+  _continue() {
+    cardHolder.textContent = "JANE APPLESEED";
+    cardDate.textContent = "00/00";
+    cardNumber.textContent = "0000 0000 0000 0000";
+    cardCVC.textContent = "000";
+    inputCVC.value = "";
+    inputCardHolder.value = "";
+    inputCardNumber.value = "";
+    inputMonth.value = "";
+    inputYear.value = "";
+    form.classList.remove("hidden");
+    done.classList.add("hidden");
   }
 }
-
 const app = new App();

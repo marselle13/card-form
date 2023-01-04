@@ -6,7 +6,7 @@
     <link href="../dist/output.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="3xl:flex 3xl:h-full 3xl:gap-[350px]">
+    <div class="3xl:flex 3xl:h-full 3xl:gap-[350px] 3xl:w-full">
       <section
         class="bg-gradient-to-r from-[#21092F] via-[#421F42] to-[#21082E] h-[240px] p-4 3xl:h-screen 3xl:w-[483px] 3xl:p-0"
       >
@@ -47,7 +47,7 @@
           </div>
         </div>
       </section>
-      <section class="px-4 mt-[91px] 3xl:max-w-[381px] 3xl:mt-[275px]">
+      <section class="px-4 mt-[91px] 3xl:max-w-[381px] 3xl:mt-[275px] 3xl:px-0">
         <form action="" class="space-y-[20px]">
           <div>
             <label
@@ -133,6 +133,26 @@
             Confirm
           </button>
         </form>
+        <section class="done text-center 3xl:w-[381px] hidden">
+          <img
+            src="../images/icon-complete.svg"
+            alt=""
+            class="mx-auto mb-[35px]"
+          />
+          <h3
+            class="uppercase text-[28px] leading-[36px] text-dark-violet mb-[16px]"
+          >
+            Thank you
+          </h3>
+          <p class="text-lg text-[#8F8694] mb-[48px]">
+            We've added your card details
+          </p>
+          <button
+            class="continue bg-dark-violet w-full text-white py-[15px] rounded-[8px]"
+          >
+            Continue
+          </button>
+        </section>
       </section>
     </div>
     <script src="app.js"></script>
