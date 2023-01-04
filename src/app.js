@@ -1,6 +1,7 @@
 "use strict";
 
 const inputs = document.querySelectorAll("input");
+const form = document.querySelector("form");
 //text content
 const cardHolder = document.querySelector(".cardholder_name");
 const cardNumber = document.querySelector(".card_number");
@@ -13,6 +14,8 @@ const inputCardNumber = document.getElementById("card_number");
 const inputCVC = document.getElementById("cvc");
 const inputMonth = document.getElementById("month");
 const inputYear = document.getElementById("year");
+//error
+const error = document.querySelectorAll(".error");
 
 class App {
   constructor() {
@@ -25,6 +28,8 @@ class App {
     inputCVC.addEventListener("input", this._inputCVC);
     inputMonth.addEventListener("input", this._inputDate);
     inputYear.addEventListener("input", this._inputDate);
+    //submit Form
+    form.addEventListener("submit", this._cardSubmit.bind(this));
   }
   //input card checker method
   _inputCard() {
@@ -62,6 +67,62 @@ class App {
     checkValue("0000 0000 0000 0000", cardNumber, inputCardNumber);
     checkValue("000", cardCVC, inputCVC);
     checkDate();
+  }
+
+  _cardSubmit(e) {
+    e.preventDefault();
+    // blank check
+    this._blankCheck();
+    this._dateCheck();
+  }
+
+  _blankCheck() {
+    inputs.forEach(function (input, index) {
+      let errorSpan = error[index];
+      if (input.value === "") {
+        input.classList.add("border-red-500");
+        input.classList.remove("border-gray-300");
+        errorSpan.textContent = "can't be blank";
+      } else {
+        input.classList.remove("border-red-500");
+        input.classList.add("border-gray-300");
+        errorSpan.textContent = "";
+      }
+    });
+  }
+
+  _dateCheck() {
+    let errorDate = error[2];
+    const monthValue = inputs[2].value;
+    const inputMonth = inputs[2];
+
+    if (monthValue > 0 && monthValue < 13) {
+      errorDate.textContent = "";
+      inputMonth.classList.remove("border-red-500");
+      inputMonth.classList.add("border-gray-300");
+    } else {
+      errorDate.textContent = "wrong Date";
+      inputMonth.classList.add("border-red-500");
+      inputMonth.classList.remove("border-gray-300");
+    }
+
+    const date = new Date();
+    const currentYear = +date.getFullYear().toString().slice(2);
+    4;
+    const yearValue = inputs[3].value;
+    const inputYear = inputs[3];
+    if (yearValue > currentYear) {
+      inputYear.classList.remove("border-red-500");
+      inputYear.classList.add("border-gray-300");
+    } else {
+      errorDate.textContent = "wrong Date";
+      inputYear.classList.add("border-red-500");
+      inputYear.classList.remove("border-gray-300");
+    }
+  }
+
+  _hideForm() {
+    form.classList.add("hidden");
   }
 }
 
