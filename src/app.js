@@ -73,7 +73,10 @@ class App {
     e.preventDefault();
     // blank check
     this._blankCheck();
-    this._dateCheck();
+    this._dayCheck();
+    this._yearCheck();
+    this._cvcCheck();
+    this._numberCheck();
   }
 
   _blankCheck() {
@@ -83,16 +86,20 @@ class App {
         input.classList.add("border-red-500");
         input.classList.remove("border-gray-300");
         errorSpan.textContent = "can't be blank";
+        return false;
       } else {
         input.classList.remove("border-red-500");
         input.classList.add("border-gray-300");
         errorSpan.textContent = "";
+        return true;
       }
     });
   }
 
-  _dateCheck() {
-    let errorDate = error[2];
+  _numberCheck() {}
+
+  _dayCheck() {
+    const errorDate = error[2];
     const monthValue = inputs[2].value;
     const inputMonth = inputs[2];
 
@@ -105,20 +112,37 @@ class App {
       inputMonth.classList.add("border-red-500");
       inputMonth.classList.remove("border-gray-300");
     }
+  }
 
+  _yearCheck() {
+    const errorDate = error[2];
     const date = new Date();
     const currentYear = +date.getFullYear().toString().slice(2);
     4;
     const yearValue = inputs[3].value;
     const inputYear = inputs[3];
-    if (yearValue > currentYear) {
+    if (yearValue >= currentYear) {
       inputYear.classList.remove("border-red-500");
       inputYear.classList.add("border-gray-300");
+      return true;
     } else {
       errorDate.textContent = "wrong Date";
       inputYear.classList.add("border-red-500");
       inputYear.classList.remove("border-gray-300");
+      return false;
     }
+  }
+  _cvcCheck() {
+    const inputCVC = inputs[4];
+    const CVCValue = inputs[4].value;
+    const errorCVC = error[4];
+    if (CVCValue.length < 3 && CVCValue) {
+      errorCVC.textContent = "wrong Format";
+      inputYear.classList.add("border-red-500");
+      inputYear.classList.remove("border-gray-300");
+      return false;
+    }
+    return true;
   }
 
   _hideForm() {
