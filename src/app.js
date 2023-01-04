@@ -71,12 +71,12 @@ class App {
 
   _cardSubmit(e) {
     e.preventDefault();
-    // blank check
+    // validation
     this._blankCheck();
+    this._numberCheck();
     this._dayCheck();
     this._yearCheck();
     this._cvcCheck();
-    this._numberCheck();
   }
 
   _blankCheck() {
@@ -96,7 +96,19 @@ class App {
     });
   }
 
-  _numberCheck() {}
+  _numberCheck() {
+    const inputNumber = inputs[1];
+    const numberValue = inputs[1].value.replace(/\s/g, "");
+    const errorNumber = error[1];
+
+    if (numberValue.length < 16 && inputs[1].value) {
+      errorNumber.textContent = "wrong Number";
+      inputNumber.classList.add("border-red-500");
+      inputNumber.classList.remove("border-gray-300");
+      return false;
+    }
+    return true;
+  }
 
   _dayCheck() {
     const errorDate = error[2];
@@ -138,8 +150,8 @@ class App {
     const errorCVC = error[4];
     if (CVCValue.length < 3 && CVCValue) {
       errorCVC.textContent = "wrong Format";
-      inputYear.classList.add("border-red-500");
-      inputYear.classList.remove("border-gray-300");
+      inputCVC.classList.add("border-red-500");
+      inputCVC.classList.remove("border-gray-300");
       return false;
     }
     return true;
