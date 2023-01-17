@@ -51,19 +51,14 @@ class App {
 
   _keyPress(e) {
     const checkValue = (startingText, text, input) => {
-      if (input.value) {
-        text.textContent = input.value;
-      } else {
-        text.textContent = `${startingText}`;
-      }
+      text.textContent = input.value ? input.value : `${startingText}`;
     };
 
     const checkDate = () => {
-      if (inputMonth.value || inputYear.value) {
-        cardDate.textContent = `${inputMonth.value}/${inputYear.value}`;
-      } else {
-        cardDate.textContent = `00/00`;
-      }
+      cardDate.textContent =
+        inputMonth.value || inputYear.value
+          ? `${inputMonth.value}/${inputYear.value}`
+          : `00/00`;
     };
 
     checkValue("JANE APPLESEED", cardHolder, inputCardHolder);
@@ -76,7 +71,6 @@ class App {
     // validation
     this._validations();
     if (
-      this._nameCheck() &&
       this._nameCheck() &&
       this._numberCheck() &&
       this._cvcCheck() &&
@@ -115,11 +109,8 @@ class App {
   }
 
   _nameCheck() {
-    if (inputs[0].value === "") {
-      return false;
-    } else {
-      return true;
-    }
+    const check = inputs[0].value ? true : false;
+    return check;
   }
 
   _numberCheck() {
